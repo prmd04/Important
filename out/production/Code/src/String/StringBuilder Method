@@ -1,0 +1,42 @@
+1.append (String s)  This method appends the mentioned string with the existing string.
+You can also with arguments like boolean, char, int, double, float, etc.
+
+2.insert (int offset, String s)
+It will insert the mentioned string to the other string from the specified offset position.
+Like append, you can overload this method with arguments like (int, boolean), (int, int), (int, char), (int, double), (int, float), etc.
+
+3.replace(int start, int end, String s)
+It will replace the original string with the specified string from the start index till the end index.
+
+4.delete(int start, int end)
+This method will delete the string from the mentioned start index till the end index.
+
+5.reverse()
+It will reverse the string.
+
+6.capacity()
+This will show the current StringBuilder capacity.
+
+7.ensureCapacity(int min)
+This method ensures that the StringBuilder capacity is at least equal to the mentioned minimum.
+
+8.charAt(int index)
+It will return the character at the specified index.
+
+9.int length()
+This method is used to return the length (total characters) of the string.
+
+10.substring(int start)
+Starting from the specified index till the end, this method will return the substring.
+
+11.substring(int start, int end)
+It will return the substring from the start index till the end index.
+
+12.indexOf(String str)
+This method will return the index where the first instance of the specified string occurs.
+
+13.lastIndexOf(String str)
+It will return the index where the specified string occurs the last.
+
+14.trimToSize()
+It will attempt to reduce the size of the StringBuilder.
