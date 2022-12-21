@@ -20,9 +20,10 @@ public class FirstTimekelementOccinArr {
         HashMap<Integer, Integer> hm = new HashMap<>();
         for(int i=0;i<n;i++){
             if(hm.containsKey(arr[i])){
-                int oldf=hm.get(arr[i]);
-                int newf=oldf+1;
-                hm.put(arr[i],newf);
+               hm.put(arr[i],hm.get(arr[i])+1);
+               if(hm.get(arr[i])>=k){
+                   return arr[i];
+               }
             }
             else{
                 hm.put(arr[i],1);

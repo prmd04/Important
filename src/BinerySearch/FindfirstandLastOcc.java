@@ -6,6 +6,7 @@ public class FindfirstandLastOcc {
         int target=7;
         System.out.println(firstocurrence(arr,target));
         System.out.println(findSecondOccarance(arr,target));
+        System.out.println("adepramod");
     }
 
     public static int firstocurrence(int arr[],int target){

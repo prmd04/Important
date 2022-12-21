@@ -3,77 +3,29 @@ import java.util.*;
 
 
 public class practice {
-
-    public static boolean compare(HashMap< Character, Integer> pmap, HashMap< Character, Integer> smap) {
-
-        for (char sch : smap.keySet()) {
-
-            if (smap.get(sch) != pmap.getOrDefault(sch, 0)) {
-                return false;
-            }
-        }
-
-        return true;
-
-    }
-
-    public static void findAnagrams(String s, String p) {
-        // write your code here
-        HashMap< Character, Integer> smap = new HashMap< >();
-        HashMap< Character, Integer> pmap = new HashMap< >();
-
-        for (int i = 0; i < p.length(); i++) {
-            char ch = p.charAt(i);
-            int ofreq = pmap.getOrDefault(ch, 0);
-            pmap.put(ch, ofreq + 1);
-        }
-
-        for (int i = 0; i < p.length(); i++) {
-            char ch = s.charAt(i);
-            int ofreq = smap.getOrDefault(ch, 0);
-            smap.put(ch, ofreq + 1);
-        }
-
-        int j = 0;
-        int i = p.length();
-        int count = 0;
-        String str = "";
-
-        while (i < s.length()) {
-            if (compare(pmap, smap) == true) {
-                count++;
-                str += j + " ";
-            }
-
-            char cha = s.charAt(i);
-            smap.put(cha, smap.getOrDefault(cha, 0) + 1);
-
-            char chr = s.charAt(j);
-
-            if (smap.get(chr) == 1) {
-                smap.remove(chr);
-            } else {
-                smap.put(chr, smap.get(chr) - 1);
-            }
-
-            i++;
-            j++;
-        }
-
-        if (compare(pmap, smap) == true) {
-            count++;
-            str += j + " ";
-        }
-
-        System.out.println(count);
-        System.out.println(str);
-    }
-
     public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        String s = scn.next();
-        String p = scn.next();
-        findAnagrams(s, p);
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Pramod", 72);
+        map.put("Ajay", 60);
+        map.put("Rashmi", 48);
+        map.put("Roshan", 65);
+
+//        System.out.println(map.containsKey("Ajay"));
+//        System.out.println(map.get("Pramod"));
+//        System.out.println(map.entrySet());
+//        System.out.println(map.keySet());
+//
+        for(Map.Entry<String,Integer>e:map.entrySet()){
+            System.out.println(e.getKey());
+            System.out.println(e.getValue());
+        }
+
+        // alternative way to print key and keyvalue
+        Set<String>keys=map.keySet();
+        for(String key:keys){
+            System.out.println(key+" "+map.get(key));
+        }
     }
+
 
 }

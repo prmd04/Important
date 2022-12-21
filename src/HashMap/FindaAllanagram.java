@@ -3,38 +3,72 @@ import java.util.*;
 public class FindaAllanagram {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int lens = sc.nextInt();
+
         String s = sc.next();
-        int lenp = sc.nextInt();
+
         String p = sc.next();
-        ArrayList<Integer>ans=anagram(s,p,lens,lenp);
-        for(int h:ans){
-            System.out.print(h+" ");
+
+
+        ArrayList<Integer> ans = anagram(s, p);
+        for (int h : ans) {
+            System.out.print(h + " ");
         }
     }
 
-    static ArrayList<Integer> anagram(String s, String p,int lens,int lenp) {
+    public static ArrayList<Integer> anagram(String s, String p) {
         ArrayList<Integer> list = new ArrayList<>();
-
-        char sfreq[] = new char[26];
-        char pfreq[] = new char[26];
+        HashMap<Character, Integer> maps = new HashMap<>();
+        HashMap<Character, Integer> mapp = new HashMap<>();
+        int lenp = p.length();
 
         for (int i = 0; i < lenp; i++) {
-            pfreq[p.charAt(i) - 'a']++;
-        }
-        for (int i = 0; i < lenp; i++) {
-            sfreq[s.charAt(i) - 'a']++;
-        }
-        for (int i = lenp; i < lens; i++) {
-            if (Arrays.equals(pfreq, sfreq)) {
-                list.add(i - lenp);
+            if (mapp.containsKey(p.charAt(i))) {
+                mapp.put(p.charAt(i), mapp.get(p.charAt(i)) + 1);
+            } else {
+                mapp.put(p.charAt(i), 1);
             }
-            sfreq[s.charAt(i) - 'a']++;
-            sfreq[s.charAt(i - lenp) - 'a']--;
         }
-        if (Arrays.equals(pfreq, sfreq)) {
-            list.add(lens - lenp);
+
+
+        for (int i = 0; i < lenp; i++) {
+            if (maps.containsKey(s.charAt(i))) {
+                maps.put(s.charAt(i), maps.get(s.charAt(i)) + 1);
+            } else {
+                maps.put(s.charAt(i), 1);
+            }
+        }
+
+        int i = p.length();
+        int j = 0;
+        while (i < s.length()) {
+            if (mapp.equals(maps)) {
+                list.add(j);
+            }
+
+            //aquire
+            if (maps.containsKey(s.charAt(i))) {
+                maps.put(s.charAt(i), maps.get(s.charAt(i)) + 1);
+            } else {
+                maps.put(s.charAt(i), 1);
+            }
+            //release
+            char chr = s.charAt(i - p.length());
+            if (maps.containsKey(chr)) {
+                if (maps.get(chr) == 1) {
+                    maps.remove(chr);
+                } else {
+                    maps.put(chr, maps.get(chr) - 1);
+                }
+            }
+            i++;
+            j++;
+
+
+        }
+        if (mapp.equals(maps)) {
+            list.add(j);
         }
         return list;
+
     }
 }
