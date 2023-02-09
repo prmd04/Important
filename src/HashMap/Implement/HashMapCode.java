@@ -92,15 +92,12 @@ public class HashMapCode {
         }
         public boolean containsKey(K key){
             int bi=bucketIndex(key);
+            int di=dataIndex(key,bi);
 
-            LinkedList<Node> ll=buckets[bi];
-
-            for(int i=0;i<ll.size();i++){
-                if(ll.get(i).key==key){
-                    return true;
-                }
+            if(di<0){
+                return false;
             }
-            return false;
+            return true;
         }
 
         public List<String> keySet(){
@@ -164,6 +161,7 @@ public class HashMapCode {
         System.out.println(map.keySet());
         System.out.println(map.remove("Shrilanka"));
         System.out.println(map.keySet());
+        System.out.println(map.containsKey("Shrilanka"));
 
 
     }

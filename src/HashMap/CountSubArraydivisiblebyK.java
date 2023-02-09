@@ -8,7 +8,8 @@ public class CountSubArraydivisiblebyK {
     public static void main(String[] args) {
         int arr[]={4,5,0,-2,-3,1};
         int k=5;
-        System.out.println(count(arr,k));
+        int ans=count(arr,k);
+        System.out.println(ans);
     }
     public static int count(int arr[],int k){
         HashMap<Integer,Integer>map=new HashMap<>();

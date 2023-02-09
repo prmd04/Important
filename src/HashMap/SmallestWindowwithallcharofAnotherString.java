@@ -6,7 +6,7 @@ public class SmallestWindowwithallcharofAnotherString {
 
         String source=sc.next();
         String pattern=sc.next();
-        String newa=smallWindow(pattern,source);
+        String newa=minWindow(source,pattern);
         System.out.println(newa);
 
     }
@@ -72,6 +72,65 @@ public class SmallestWindowwithallcharofAnotherString {
 
 
 
+        return ans;
+    }
+    public static String minWindow(String s, String t) {
+        String ans="";
+        if(t.length()>s.length()){
+            return ans;
+        }
+        HashMap<Character,Integer>mapt=new HashMap<>();
+        //first add all the charcter in map
+        for(int i=0;i<t.length();i++){
+            char ch=t.charAt(i);
+            mapt.put(ch,mapt.getOrDefault(ch,0)+1);
+        }
+        int mcnt=0;// match count
+        int dcnt=t.length();// desire count;
+        HashMap<Character,Integer>maps=new HashMap<>();
+        int i=-1;
+        int j=-1;
+        while(true){
+            boolean flag1=true;
+            boolean flag2=true;;
+            while(i<s.length()-1 && dcnt>mcnt){
+                i++;
+                char cha=s.charAt(i);
+                maps.put(cha,maps.getOrDefault(cha,0)+1);
+
+                if(mapt.containsKey(cha)){
+                    if(mapt.get(cha)>=maps.get(cha)){
+                        mcnt++;
+                    }
+                }
+
+                flag1=false;
+
+            }
+            while(j<i && dcnt==mcnt){
+                String temp=s.substring(j+1,i+1);
+                if(ans.length()==0 || temp.length()<ans.length()){
+                    ans=temp;
+                }
+                j++;
+                char chr=s.charAt(j);
+                maps.put(chr,maps.getOrDefault(chr,0)-1);
+                if(maps.get(chr)==0){
+                    maps.remove(chr);
+                }
+
+                if(mapt.containsKey(chr)){
+                    if(mapt.get(chr)>maps.getOrDefault(chr,0)){
+                        mcnt--;
+                    }
+                }
+                flag2=false;
+            }
+            if(flag1==true && flag2==true){
+                break;
+            }
+
+        }
         return ans;
     }
 }

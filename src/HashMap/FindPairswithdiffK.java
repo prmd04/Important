@@ -3,9 +3,10 @@ import java.util.*;
 
 public class FindPairswithdiffK {
     public static void main(String[] args) {
-        int arr[]={1,4,4,5,5,5,6,6,11};
-        int k=11;
-        System.out.println(findpair(arr,k));
+        int arr[]={1,5,4,1,2};
+        int k=0;
+        int ans=mp(arr,k);
+        System.out.println(ans);
     }
 
     private static int findpair(int[] arr, int k) {
@@ -24,4 +25,19 @@ public class FindPairswithdiffK {
         }
         return count;
     }
+    public static int mp(int arr[],int k){
+        HashMap<Integer,Integer>map=new HashMap<>();
+        int count=0;
+        for(int i=0;i<arr.length;i++){
+            if(k==0 && map.get(arr[i])>1){
+                count++;
+            }
+            if(k!=0 && map.containsKey(arr[i]+k)){
+                count+=map.get(arr[i]+k);
+            }
+            map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+        }
+        return count;
+    }
+
 }

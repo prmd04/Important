@@ -113,7 +113,7 @@ public class LL {       // class LL
 
         public Node(int value) { // here we take value and the address
             this.value = value;
-            this.next = next;
+//            this.next = next;
         }
         public Node(int value,Node next){
             this.value=value;

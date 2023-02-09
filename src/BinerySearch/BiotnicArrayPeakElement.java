@@ -6,7 +6,7 @@ we have given height of mountain we have to return peak height of mountain
 */
 public class BiotnicArrayPeakElement {
     public static void main(String args[]){
-        int arr[]={1,2,3,20,6,4,3,2};
+        int arr[]={5,1,2,3,4};
         System.out.println(peakIndexInMountainArray(arr));
 
     }

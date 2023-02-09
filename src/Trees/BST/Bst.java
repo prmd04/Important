@@ -73,6 +73,7 @@ class BinSerchTree{
                     q.offer(temp.right);
                 }
             }
+            System.out.println();
         }
     }
     void search(int key){
@@ -196,10 +197,16 @@ public class Bst {
         BinSerchTree tree=new BinSerchTree();
         Scanner sc=new Scanner(System.in);
         int n=sc.nextInt();
+        int Val[]=new int[n];
         for(int i=0;i<n;i++){
-            tree.insert(sc.nextInt());
+            Val[i]=(sc.nextInt());
         }
-        tree.leftview();
+        for(int i=0;i<n;i++){
+            tree.insert(Val[i]);
+        }
+
+        tree.leveloreder();
+
 
 
     }

@@ -29,11 +29,11 @@ public class Innorder {
         Stack<Node>stack=new Stack<>();
         ArrayList<Integer>ans=new ArrayList<>();
         while(root!=null || !stack.isEmpty()){
-            if(root!=null){
+            while(root!=null){
                 stack.push(root);
                 root=root.left;
             }
-            else{
+            if(root==null && !stack.isEmpty()){
                 root= stack.pop();
                 ans.add(root.data);
                 root=root.right;

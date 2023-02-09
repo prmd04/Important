@@ -8,31 +8,25 @@ public class anagram {
         System.out.println(anagram(s,t));
     }
     static Boolean anagram(String s,String t){
-        int ls=s.length();
-        int lt=t.length();
-        if(ls!=lt)return false;
-        HashMap<Character,Integer>hm=new HashMap<>();
-        for(int i=0;i<ls;i++){
-            char ch=s.charAt(i);
-            if(hm.containsKey(ch)){
-                hm.put(ch,hm.get(ch)+1);
-            }
-            else{
-                hm.put(ch,1);
-            }
+        if(s.length()!=t.length()){
+            return false;
         }
-        for(int i=0;i<lt;i++){
+        HashMap<Character,Integer>map=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            map.put(ch,map.getOrDefault(ch,0)+1);
+        }
+        for(int i=0;i<t.length();i++){
             char ch=t.charAt(i);
-            if(hm.containsKey(ch)){
-                hm.put(ch,hm.get(ch)-1);
-                if(hm.get(ch)==0){
-                    hm.remove(ch);
-                }
-            }
-            else{
+            if(!map.containsKey(ch)){
                 return false;
             }
+            map.put(ch,map.getOrDefault(ch,0)-1);
+            if(map.get(ch)==0)
+            {
+                map.remove(ch);
+            }
         }
-        return true;
+        return map.isEmpty();
     }
 }

@@ -10,7 +10,7 @@ class Pair{
         this.num=val;
     }
 }
-public class PreInPostinOne {
+public class  PreInPostinOne {
     public static void main(String[] args) {
         Node root=new Node(1);
         root.left=new Node(2);

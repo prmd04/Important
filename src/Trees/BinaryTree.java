@@ -14,7 +14,7 @@ public class BinaryTree {
 	can write a function to find min and max value of tree.
 */
 
-    /* Returns true if given search tree is binary
+    /* Returns true if given search tree is binary 
     search tree (efficient version) */
     boolean isBST()
     {

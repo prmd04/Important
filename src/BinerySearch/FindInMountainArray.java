@@ -16,7 +16,7 @@ Return the minimum index, which is 2.
 public class FindInMountainArray {
     public static void main(String[] args) {
         int arr[]={0,1,2,4,2,1};
-        int target=3;
+        int target=4;
         int firstindex=indexOfElement(arr,0,peakIndex(arr),target);
         if(firstindex!=-1){
             System.out.println(firstindex);
@@ -28,8 +28,9 @@ public class FindInMountainArray {
     }
     public static int peakIndex( int arr[]) {
         int low=0,high=arr.length-1;
+        int mid;
         while(low<=high){
-            int mid=low+(high-low)/2;
+            mid=low+(high-low)/2;
             if(low==high){
                 return mid;
             }
@@ -49,11 +50,12 @@ public class FindInMountainArray {
 
                 return mid;
             }
-            else if(target>arr[mid]){
-                low=mid+1;
+            else if(arr[mid]>target){
+                high=mid-1;
+
             }
             else{
-                high=mid-1;
+                low=mid+1;
             }
         }
         return -1;

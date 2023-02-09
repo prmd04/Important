@@ -1,42 +1,51 @@
 package BinerySearch;
 
-public class SplitArrayInLargestSum {
+public class  SplitArrayInLargestSum {
     public static void main(String[] args) {
         int arr[]={7,2,5,10,8};
         int m=2;
-        splitArray(arr,m);
+        int ans=splitArray(arr,m);
+        System.out.println(ans);
 
     }
-    public static int splitArray(int[] nums, int m) {
-        int start=0;
-        int end=0;
-        for(int i=0;i<nums.length;i++){
-            start=Math.max(start,nums[i]);
-            end=end+nums[i];
-        }
-        while(start<end){
-            int mid=start+(end-start)/2;
-
-            int sum=0;
-            int pieces=1;
-            for (int num:nums) {
-                if (sum + num > mid) {
-                    sum = num;
-                    pieces++;
-                } else {
-                    sum += num;
-                }
+    public static int splitArray(int[] arr, int m)
+    {
+        int max=arr[0];
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            if(max<arr[i]){
+                max=arr[i];
             }
-            if(pieces>m){
-                start=mid+1;
+        }
+        int low=max;
+        int high=sum;
+        int ans=-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+
+            if(isPossible(arr,mid,m)==true){
+                ans=mid;
+                high=mid-1;
             }
             else{
-                end=mid;
+                low=mid+1;
             }
         }
-        return start;
-
+        return ans;
     }
+    public static boolean isPossible(int arr[],int mid,int m){
+        int sum=0;
+        int pices=1;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
 
+            if(sum>mid){
+                pices++;
+                sum=arr[i];
+            }
+        }
+        return pices<=m;
+    }
 }
-
+        

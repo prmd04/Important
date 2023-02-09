@@ -4,22 +4,31 @@ package BinerySearch;
 public class FloorOfNumber {
     public static void main(String[] args) {
         int arr[]={2,3,5,9,14,16,18};
-        int target=1;
+        int target=10;
         System.out.println(floor(arr,0,arr.length-1,target));
     }
-    public static int floor(int arr[],int s,int e,int x){
+    public static int floor(int arr[],int low,int high,int x)
+    {
+        int floor=0;
+        while(low<=high)
+        {
+            int mid = low + (high - low) / 2;
 
-        int mid=s+(e-s)/2;
-        if(s>e)return e;
+            if(arr[mid]==x)
+            {
+                return arr[mid];
+            }
+            else if(arr[mid]<x)
+            {
+                floor=arr[mid];
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+        }
+        return floor;
 
-        if(arr[mid]==x){
-            return mid;
-        }
-        if(arr[mid]>x){
-            return floor(arr,s,mid-1,x);
-        }
-        else {
-            return floor(arr, mid + 1, e, x);
-        }
     }
 }
